@@ -1,0 +1,64 @@
+@import "../../styles/theme";
+
+.root {
+  margin: 30px;
+}
+
+.departments {
+  margin: 10px 0;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notFound {
+  height: 200px;
+  width: 200px;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+}
+
+.department {
+  background: $white;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 12px;
+  flex: 0 0 33%;
+}
+
+.crew {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+}
+
+.member {
+  background: $lightGrey;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.crewMember {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.removeCrew {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 10px;
+  width: 10px;
+}

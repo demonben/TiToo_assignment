@@ -1,0 +1,37 @@
+@import "../../styles/theme";
+
+.root {
+  margin: 30px;
+}
+.list {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.member {
+  background: $white;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.crewMember {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.removeCrew {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 10px;
+  width: 10px;
+}
