@@ -1,13 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { App } from "./components/app";
 import { store } from "./store/store";
 import "./styles/main.scss";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+    <DndProvider backend={HTML5Backend}>
+      <App />
+    </DndProvider>
+  </Provider>
 );
