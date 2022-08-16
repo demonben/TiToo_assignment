@@ -1,40 +1,24 @@
-import React from "react";
-import { CREW_POSITIONS } from "../../constants";
-import { Doctor, Nurse, Cactus } from "../../images";
+import React, { memo, useCallback } from "react";
 import styles from "./crew-members.module.scss";
+import { CREW_POSITIONS } from "../../constants";
+import { Doctor, Nurse } from "../../images";
+import EmptyDepartment from "../EmptyDepartment";
+import Loader from "../Loader";
+import CrewMembersList from "./CrewMembersList";
 
-const CrewMembersComponent = React.memo(({ list }) => {
-  const renderDepartments = React.useCallback(() => {
+const CrewMembersComponent = memo(({ list }) => {
+  const renderDepartments = useCallback(() => {
     if (list === null) {
-      return (
-        <div className={styles.wrapper}>
-          <h4>Loading...</h4>
-        </div>
-      );
+      return <Loader />;
     }
 
     if (list.length === 0) {
-      return (
-        <div className={styles.wrapper}>
-          <Cactus className={styles.notFound} />
-          <h4>No Crew Members Found</h4>
-        </div>
-      );
+      return <EmptyDepartment />;
     }
 
     return (
       <div className={styles.list}>
-        {list.map(({ id, name, position, seniority }) => (
-          <div key={id} className={styles.member}>
-            {position === CREW_POSITIONS.DOCTOR ? (
-              <Doctor className={styles.crewMember} />
-            ) : (
-              <Nurse className={styles.crewMember} />
-            )}
-            <h5>{name}</h5>
-            <span className={styles.seniority}>{seniority} years</span>
-          </div>
-        ))}
+        <CrewMembersList list={list} />
       </div>
     );
   }, [list]);
