@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { CrewMembersComponent } from "./crew-members.component";
+import { CrewMembersComponent } from "./CrewMembers";
 
 const mapStateToProps = ({ crew }) => ({
   list: crew.list,

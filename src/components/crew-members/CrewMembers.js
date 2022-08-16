@@ -1,7 +1,5 @@
 import React, { memo, useCallback } from "react";
 import styles from "./crew-members.module.scss";
-import { CREW_POSITIONS } from "../../constants";
-import { Doctor, Nurse } from "../../images";
 import EmptyDepartment from "../EmptyDepartment";
 import Loader from "../Loader";
 import CrewMembersList from "./CrewMembersList";
