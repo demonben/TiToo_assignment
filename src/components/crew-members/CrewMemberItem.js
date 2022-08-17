@@ -2,11 +2,20 @@ import React from "react";
 import styles from "./crew-members.module.scss";
 import { CREW_POSITIONS } from "../../constants";
 import { Doctor, Nurse } from "../../images";
-
+import { useDrag } from "react-dnd";
 const CrewMemberItem = ({ item }) => {
-  const { position, name, seniority } = item;
+  const { id, position, name, seniority } = item;
+
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "member",
+    item: { id: id },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging,
+    }),
+  }));
+
   return (
-    <div className={styles.member}>
+    <div className={styles.member} ref={drag}>
       {position === CREW_POSITIONS.DOCTOR ? (
         <Doctor className={styles.crewMember} />
       ) : (
