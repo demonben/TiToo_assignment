@@ -3,7 +3,7 @@ import DepartmentItem from "./DepartmentItem";
 import styles from "./departments.module.scss";
 
 const DepartmentsList = ({ list }) => {
-
+  
   return (
     <div className={styles.list}>
       {list.map((item) => (

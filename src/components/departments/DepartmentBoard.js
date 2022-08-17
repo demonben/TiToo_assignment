@@ -4,7 +4,6 @@ import styles from "./departments.module.scss";
 import { useDrop, useDrag } from "react-dnd";
 
 const DepartmentBoard = memo(({ crew, removeCrewMember }) => {
-console.log(removeCrewMember(4));
   const [board, setBoard] = useState([]);
 
 
