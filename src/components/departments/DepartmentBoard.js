@@ -1,8 +1,9 @@
 import React from "react";
-import { Doctor, XIcon } from "../../images";
+import { Doctor, Nurse, XIcon } from "../../images";
 import styles from "./departments.module.scss";
 import { useDrag } from "react-dnd";
 import { CREW_MEMBER } from "../../constants/crewMember";
+import { CREW_POSITIONS } from "../../constants";
 
 const DepartmentBoard = ({ crew, board, deleteBoardMember }) => {
   const [{ isDragging }, drag] = useDrag(() => {
@@ -26,7 +27,11 @@ const DepartmentBoard = ({ crew, board, deleteBoardMember }) => {
                 className={styles.removeCrew}
                 onClick={() => deleteBoardMember(item)}
               />
-              <Doctor className={styles.crewMember} />
+              {item.position === CREW_POSITIONS.DOCTOR ? (
+                <Doctor className={styles.crewMember} />
+              ) : (
+                <Nurse className={styles.crewMember} />
+              )}
               <span>{item.name && item.name}</span>
               <span className={styles.seniority}>{item.seniority} years</span>
             </div>
