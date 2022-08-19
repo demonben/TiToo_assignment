@@ -1,54 +1,44 @@
-import React, { useState,memo } from "react";
+import React from "react";
 import { Doctor, XIcon } from "../../images";
 import styles from "./departments.module.scss";
-import { useDrop, useDrag } from "react-dnd";
+import { useDrag } from "react-dnd";
+import { CREW_MEMBER } from "../../constants/crewMember";
 
-const DepartmentBoard = memo(({ crew, removeCrewMember }) => {
-  const [board, setBoard] = useState([]);
+const DepartmentBoard = ({ crew, board, deleteBoardMember }) => {
+  const [{ isDragging }, drag] = useDrag(() => {
+    return {
+      type: CREW_MEMBER,
+      item: crew ? { id: crew.id } : 0,
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging,
+      }),
+    };
+  });
 
-
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: "member",
-    drop: (item) => addCrewMemberToBoard(item.id),
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver,
-    }),
-  }));
-
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "member",
-    item: crew?{ id: crew.id }:0,
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging,
-    }),
-  }));
-
-  const addCrewMemberToBoard = (id) => {
-    const boardList = crew.filter((member) => id === member.id);
-    setBoard((board) => [...board, boardList[0]]);
-  };
-
-  return (
+  return crew ? (
     <>
-      <div className="Board" ref={drop}>
+      <div className="Board">
         <h5>Crew members:</h5>
         {board.map((item) => (
-          <div key={item.id} className={styles.crew} >
+          <div key={item.id} className={styles.crew}>
             <div className={styles.member} ref={drag}>
-              <XIcon className={styles.removeCrew} />
+              <XIcon
+                className={styles.removeCrew}
+                onClick={() => deleteBoardMember(item)}
+              />
               <Doctor className={styles.crewMember} />
-              <span>{item.name}</span>
+              <span>{item.name && item.name}</span>
               <span className={styles.seniority}>{item.seniority} years</span>
             </div>
           </div>
         ))}
       </div>
     </>
-  );
-});
+  ) : null;
+};
 
 DepartmentBoard.defaultProps = {
-  crew: null,
+  crew: [],
 };
 
 export { DepartmentBoard };
