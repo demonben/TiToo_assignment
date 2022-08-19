@@ -7,6 +7,7 @@ const generateCrewMember = () => ({
   name: faker.name.findName(),
   seniority: faker.datatype.number({ min: 0, max: 20 }),
   position: Math.random() < 0.5 ? CREW_POSITIONS.DOCTOR : CREW_POSITIONS.NURSE,
+  isVisible: true,
 });
 
 export const getCrew = async () => {
