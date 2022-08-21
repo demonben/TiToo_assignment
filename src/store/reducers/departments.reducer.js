@@ -1,4 +1,4 @@
-import { DEPARTMENTS_FETCH_DATA } from "../actions";
+import { DEPARTMENTS_FETCH_DATA, DEPARTMENT_UPDATE_CREW } from "../actions";
 import update from "immutability-helper";
 
 const initialState = {
@@ -14,8 +14,17 @@ const updateDepartments = (state, { departments }) =>
     },
   });
 
+const updateDepartmentsCrew = (state, { departments }) =>
+  update(state, {
+    $merge: {
+      list: departments,
+      lastUpdated: Date.now(),
+    },
+  });
+
 const actionsRepo = {
   [DEPARTMENTS_FETCH_DATA]: updateDepartments,
+  [DEPARTMENT_UPDATE_CREW]: updateDepartments,
 };
 
 export default (state = initialState, { type, payload }) =>

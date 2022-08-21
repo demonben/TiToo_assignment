@@ -7,5 +7,4 @@ export const UPDATE_CREW = "UPDATE_CREW";
 
 // Departments
 export const DEPARTMENTS_FETCH_DATA = "[Departments] Fetch data";
-
-
+export const DEPARTMENT_UPDATE_CREW = "DEPARTMENT_UPDATE_CREW";
