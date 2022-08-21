@@ -10,11 +10,12 @@ const generateDepartment = ({ name }) => ({
       max: faker.datatype.number({ min: 5, max: 10 }),
     },
     crew: {
-      nurses: faker.datatype.number({ min: 0, max: 10 }),
-      doctors: faker.datatype.number({ min: 0, max: 10 }),
+      nurses: faker.datatype.number({ min: 1, max: 10 }),
+      doctors: faker.datatype.number({ min: 1, max: 5 }),
     },
   },
-  crew: [],
+  departmentCrew: [],
+  currentCapacity: { doctors: 0, nurses: 0 },
 });
 
 export const getDepartments = async () => {

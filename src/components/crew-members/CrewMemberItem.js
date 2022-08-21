@@ -8,7 +8,7 @@ const CrewMemberItem = ({ item }) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "member",
-    item: { id: id },
+    item: { id: id, seniority: seniority, position: position },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging,
     }),

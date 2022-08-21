@@ -1,17 +1,13 @@
 import React, { memo, useCallback } from "react";
 import styles from "./crew-members.module.scss";
-import EmptyDepartment from "../EmptyDepartment";
 import Loader from "../Loader";
 import CrewMembersList from "./CrewMembersList";
 
 const CrewMembersComponent = memo(({ list }) => {
   const renderDepartments = useCallback(() => {
-    if (list === null) {
-      return <Loader />;
-    }
 
     if (list.length === 0) {
-      return <EmptyDepartment />;
+      return <Loader />;
     }
 
     return (
