@@ -3,14 +3,11 @@ import styles from "./crew-members.module.scss";
 import CrewMemberItem from "./CrewMemberItem";
 
 const CrewMembersList = ({ list }) => {
-  
   return (
     <div className={styles.list}>
-      {list.map((item) => {
-        if (item.isVisible) {
-          return <CrewMemberItem key={item.id} item={item} />;
-        }
-      })}
+      {list.map(
+        (item) => item.isVisible && <CrewMemberItem key={item.id} item={item} />
+      )}
     </div>
   );
 };
