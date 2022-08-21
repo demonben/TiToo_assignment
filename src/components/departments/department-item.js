@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { DepartmentItem } from "./DepartmentItem";
 
-const mapStateToProps = ({ crew }) => ({
+const mapStateToProps = ({ departments, crew }) => ({
+  departments: departments.list,
   crew: crew.list,
 });
 
