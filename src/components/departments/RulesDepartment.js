@@ -7,7 +7,7 @@ const RulesDepartment = ({ rules }) => {
     <div>
       <h5>Rules:</h5>
       <p>
-        Seniority is more than {seniority.min} and less then {seniority.max}{" "}
+        Seniority is more than {seniority.min} {" "}
         years.
       </p>
       <p>
