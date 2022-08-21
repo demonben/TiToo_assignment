@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { BoardDepartment } from "./department-board";
 import styles from "./departments.module.scss";
 import { useDrop } from "react-dnd";
@@ -26,8 +26,6 @@ const DepartmentItem = ({ item, crew, departments }) => {
   );
 
   const deleteBoardMember = (item) => {
-    update(item);
-
     const updatedBoard = departmentCrew.filter((boardItem) => {
       return boardItem.id !== item.id;
     });
@@ -37,6 +35,8 @@ const DepartmentItem = ({ item, crew, departments }) => {
       }
       checkDepartmentCapacity(department.departmentCrew, department);
     });
+    update(item);
+
     dispatch(updateDepartmentCrew(departmentsArr));
   };
 
@@ -45,14 +45,26 @@ const DepartmentItem = ({ item, crew, departments }) => {
       const boardList = crew.filter((member) => {
         return item.id === member.id;
       });
-
       departmentsArr.forEach((department) => {
         if (department.id === id) {
-          department.departmentCrew.push(boardList[0]);
+          if (
+            rules.crew.nurses > currentCapacity.nurses &&
+            boardList[0].position === "nurse"
+          ) {
+            department.departmentCrew.push(boardList[0]);
+            update(item);
+          } else if (
+            rules.crew.doctors > currentCapacity.doctors &&
+            boardList[0].position === "doctor"
+          ) {
+            department.departmentCrew.push(boardList[0]);
+            update(item);
+          } else {
+            return;
+          }
         }
         checkDepartmentCapacity(department.departmentCrew, department);
       });
-      update(item);
 
       dispatch(updateDepartmentCrew(departmentsArr));
     }
